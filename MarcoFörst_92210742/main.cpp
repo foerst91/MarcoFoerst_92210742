@@ -13,7 +13,7 @@ std::string port;
 std::string result;
 
 
-void menu() {																						//Funktion zur Anzeige des Menüs
+void menu() {																						//Funktion zur Anzeige des MenÃ¼s
 	std::cout << "\nMikrocontroller Kalkulator \n" << std::endl;
 	std::cout << "1 = Addieren + \n"
 		"2 = Subtrahieren - \n"
@@ -23,18 +23,18 @@ void menu() {																						//Funktion zur Anzeige des Menüs
 		"6 = Beenden B/Q \n" << std::endl;
 
 	std::cout << "Geben Sie die gewuenschte Rechenoperation ein: ";
-	std::cin >> op;																					//Eingabe der gewünschten Rechenoperation
+	std::cin >> op;																					//Eingabe der gewÃ¼nschten Rechenoperation
 }
 
 void input() {																						//Funktion zur Eingabe der Zahlen, mit Validierung
-	while (true) {																					//Endlosschleife bis gültige Eingabe
+	while (true) {																					//Endlosschleife bis gÃ¼ltige Eingabe
 		std::cout << "Eingabe erste Zahl: ";
 		std::cin >> userInput;
-		size_t pos;																					//Variable zur Überprüfung der gesamten Eingabe
+		size_t pos;																					//Variable zur ÃœberprÃ¼fung der gesamten Eingabe
 		try {
-			number1 = std::stoi(userInput, &pos);														//Funktion zur Umwandlung String in Integer
+			number1 = std::stoi(userInput, &pos);													//Funktion zur Umwandlung String in Integer
 		}
-		catch (...) {																				//Catch Block für ungültige Eingaben
+		catch (...) {																				//Catch Block fÃ¼r ungÃ¼ltige Eingaben
 			std::cout << "Ungueltige Eingabe. Bitte ganze Zahl eingeben.\n";
 			continue;
 		}
@@ -43,7 +43,7 @@ void input() {																						//Funktion zur Eingabe der Zahlen, mit Valid
 			std::cout << "Ungueltige Eingabe. Bitte ganze Zahl eingeben.\n";
 			continue;
 		}
-		if (number1 < -32768 || number1 > 32767) {														//Überprüfung ob die Zahl im gültigen Bereich von Integer liegt
+		if (number1 < -32768 || number1 > 32767) {													//ÃœberprÃ¼fung ob die Zahl im gÃ¼ltigen Bereich von Integer liegt
 			std::cout << "Ungueltige Eingabe. Zahl muss zwischen -32768 und 32767 liegen.\n";
 			continue;
 		}
@@ -74,21 +74,21 @@ int main() {																																				//Hauptprogramm
 	std::cout << "Geben Sie den COM-Port des Mikrocontrollers in Form von COMx ein: ";
 	std::cin >> port;																																		//Eingabe des COM Ports
 	SerialPort serial(port);																																//Objekt der SerialPort Klasse erstellen
-	if (!serial.openPort()) {																																//Öffnen der seriellen Schnittstelle
+	if (!serial.openPort()) {																																//Ã–ffnen der seriellen Schnittstelle
 		std::cout << "Fehler beim Oeffnen des Ports, pruefe ob COMx korrekt eingegeben und der Mikrocontroller verbunden ist " << port << std::endl;		//Fehlermeldung bei Verbindungsfehler
 		return 1;																																			//Programm beenden
 		}
 
-	Log log("KalkulatorLog.txt");																															//Objekt der Log Klasse erstellen, Text Datei zum Protokollieren erstellen/öffnen
-	if (!log.isOpen()) {																																	//Überprüfen ob die Datei geöffnet ist
+	Log log("KalkulatorLog.txt");																															//Objekt der Log Klasse erstellen, Text Datei zum Protokollieren erstellen/Ã¶ffnen
+	if (!log.isOpen()) {																																	//ÃœberprÃ¼fen ob die Datei geÃ¶ffnet ist
 		std::cout << "Fehler beim oeffnen der Textdatei!" << std::endl;																						//Fehlermeldung bei Fehler
 		return 1;																																			//Programm beenden
 	}
 
-	while (true) {																																			//Endlosschleife für das Hauptmenü
-		system("cls");																																		//Konsole wird gelöscht
-		menu();																																				//Menü Funktion aufrufen
-		if (op == "1" || op == "+") {																														//if Abfragen für die Auswahl der Rechenoperation
+	while (true) {																																			//Endlosschleife fÃ¼r das HauptmenÃ¼
+		system("cls");																																		//Konsole wird gelÃ¶scht
+		menu();																																				//MenÃ¼ Funktion aufrufen
+		if (op == "1" || op == "+") {																														//if Abfragen fÃ¼r die Auswahl der Rechenoperation
 			op = "+";																																		//Setzen des Operators
 			input();																																		//Aufruf der Eingabefunktion
 			}
@@ -107,23 +107,23 @@ int main() {																																				//Hauptprogramm
 			else if (op == "5" || op == "H" || op == "h") {																													//Hilfe Anzeige
 			std::cout << "\nDer Mikrocontroller Kalkulator unterstuetzt Ganzzahlen von -32768 bis 32767 sowie die vier Grundrechenarten + , - , * , /  \n" << std::endl;	//Hilfe Text ausgeben
 			system("pause");																																				//Warten auf Benutzereingabe
-			continue;																																						//Menü wird erneut angezeigt
+			continue;																																						//MenÃ¼ wird erneut angezeigt
 			}
 			else if (op == "6" || op == "B" || op == "b" || op == "Q" || op == "q") {																						//Programm beenden
 			break;																																							//Schleife verlassen
 			}
 			else {																																									
-			std::cout << "\nungueltige Eingabe\n" << std::endl;																												//Ungültige Eingabe, Menü wird erneut angezeigt
+			std::cout << "\nungueltige Eingabe\n" << std::endl;																												//UngÃ¼ltige Eingabe, MenÃ¼ wird erneut angezeigt
 			system("pause");
 			continue;
 			}
 
-		calculation = std::to_string(number1) + " " + op + " " + std::to_string(number2);																					//Rechenoperation als String zusammenfügen																			
+		calculation = std::to_string(number1) + " " + op + " " + std::to_string(number2);																					//Rechenoperation als String zusammenfÃ¼gen																			
 		std::cout << "\n" << calculation << "         (zum berechnen an Mikrocontroller gesendet)" << std::endl;															//Anzeige der Rechenoperation
 			
 
 		result = serial.sendAndReceive(calculation + "\n");																													//Rechenoperation an Mikrocontroller senden und Ergebnis empfangen
-		if (result.find("Fehler") != std::string::npos) {																													//Überprüfen ob eine Fehlermeldung empfangen wurde
+		if (result.find("Fehler") != std::string::npos) {																													//ÃœberprÃ¼fen ob eine Fehlermeldung empfangen wurde
 			std::cout << "\n" << result << std::endl;																														//Fehlermeldung ausgeben
 			log.write("Rechenoperation: " + calculation + "\n" + result);																									//Fehlermeldung in die Log Datei schreiben
 			system("pause");																																				//Warten auf Benutzereingabe
@@ -134,24 +134,24 @@ int main() {																																				//Hauptprogramm
 
 
 
-			while (true) {																																					//Schleife für Abfrage ob weitere Berechnung ausgeführt werden soll
+			while (true) {																																					//Schleife fÃ¼r Abfrage ob weitere Berechnung ausgefÃ¼hrt werden soll
 				std::cout << "\n\nWeitere Berechnung ausfuehren? J/N: ";																									
 				std::cin >> newCalc;
 				if (newCalc == 'J' || newCalc == 'j') {
-					system("cls");																																			//Konsole wird gelöscht und Menü erneut angezeigt
+					system("cls");																																			//Konsole wird gelÃ¶scht und MenÃ¼ erneut angezeigt
 					break;
 				}
 				else if (newCalc == 'N' || newCalc == 'n') {
 					return 1;
 				}
 				else {
-					std::cout << "ungueltige Eingabe" << std::endl;																											//Ungültige Eingabe, Abfrage wird erneut gestellt
+					std::cout << "ungueltige Eingabe" << std::endl;																											//UngÃ¼ltige Eingabe, Abfrage wird erneut gestellt
 					continue;
 				}
 			}
 		}
 
-	serial.closePort();																																						//Serielle Schnittstelle schließen
+	serial.closePort();																																						//Serielle Schnittstelle schlieÃŸen
 
 	return 0;																																								//Programm erfolgreich beenden
 	}	
