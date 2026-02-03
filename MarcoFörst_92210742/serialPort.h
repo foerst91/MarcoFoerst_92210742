@@ -1,35 +1,25 @@
-#pragma once
+#pragma once															//Schutz vor mehrfachen Einbindungen von Bibliotheken
 
+#include <string>														//Einbinden Standardbibliotheken
+#include <iostream>
 #include <Windows.h>
 
 
-class SerialPort {
-public:
-	SerialPort();
-	~SerialPort();
-
-
-
-	bool open(const char* port);
-	void close();
-	bool isOpen() const;
-
-	bool configure(	DWORD baudRate = 115200, 
-					BYTE byteSize = 8, 
-					BYTE stopBits = ONESTOPBIT, 
-					BYTE parity = NOPARITY);
-
-
-
-	DWORD getLastError() const;
-
-
-
+class SerialPort {														//Klasse für Serielle Verbindung deklarieren
 private:
-	HANDLE hCom; 
-	DWORD lastError
+	HANDLE hCom;														//Handle für serielle Schnittstelle	
+	std::string portName;												//Name der seriellen Schnittstelle
+	bool isConnected;													//Verbindungsstatus
 
+public:																	
+	SerialPort(const std::string& port);								//Konstruktor mit Portname
 
+	~SerialPort();														//Destruktor zum Schließen der Schnittstelle
 
+	bool openPort();													//Öffnen der seriellen Schnittstelle
+
+	std::string sendAndReceive(const std::string& message);				//Senden und Empfangen von Daten
+
+	void closePort();													//Schließen der seriellen Schnittstelle
 
 };
